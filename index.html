@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dismod — Messages</title><link rel="stylesheet" href="/style.css">
+  <script src="/socket.io/socket.io.js" defer></script><script src="/app.js" defer></script>
+</head>
+<body>
+  <main id="authView" class="auth-wrap">
+    <section class="auth-card">
+      <div class="brand-mark">S</div><p class="eyebrow">YOUR LITTLE CORNER</p>
+      <h1>Stay close.</h1><p class="muted">A simple, cozy place to talk with your people.</p>
+      <div class="auth-tabs"><button class="tab active" id="loginTab">Log in</button><button class="tab" id="registerTab">Create account</button></div>
+      <form id="authForm">
+        <label>Username<input id="username" autocomplete="username" minlength="3" maxlength="20" required placeholder="Your username"></label>
+        <label>Password<input id="password" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></label>
+        <button class="primary wide" id="authSubmit">Log in</button>
+      </form><p id="authError" class="error"></p>
+      <p class="tiny muted">No email required. Your username is your identity.</p>
+    </section>
+  </main>
+  <main id="appView" class="app-shell hidden">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark small">S</span><b>Dismod</b></div>
+      <div class="top-actions"><span id="currentUser" class="user-pill"></span><button class="icon-btn" id="themeToggle" title="Change theme">◐</button><button class="icon-btn" id="logoutBtn" title="Log out">↗</button></div>
+    </header>
+    <section class="workspace">
+      <aside class="sidebar">
+        <div class="side-heading"><div><h2>Messages</h2><p class="muted tiny">Your conversations</p></div><button class="icon-btn" id="addFriendOpen" title="Add friend">＋</button></div>
+        <div class="filter-row"><span class="filter active">All messages</span><span class="filter">Friends</span></div>
+        <div id="friendList" class="friend-list"><div class="empty-small">Add a friend to start chatting ✨</div></div>
+        <div class="sidebar-foot"><span class="online-dot"></span> Your space, your people</div>
+      </aside>
+      <section class="chat-panel">
+        <div id="emptyChat" class="empty-chat"><div class="bubble-art">•••</div><h3>No conversation selected</h3><p class="muted">Choose a friend from the side panel or add someone by username.</p></div>
+        <div id="activeChat" class="active-chat hidden">
+          <header class="chat-head"><div class="avatar" id="chatAvatar">?</div><div><b id="chatName">Friend</b><p class="tiny muted">Your private conversation</p></div></header>
+          <div id="messages" class="messages"></div>
+          <form id="messageForm" class="composer">
+            <input type="file" id="imageInput" accept="image/png,image/jpeg,image/gif,image/webp" hidden>
+            <button type="button" class="attach-btn" id="attachBtn" title="Send image">＋</button>
+            <input id="messageInput" maxlength="4000" placeholder="Write a message..." autocomplete="off">
+            <button class="send-btn" type="submit">Send <span>➤</span></button>
+          </form>
+          <div class="composer-hint">Images up to 8 MB · Messages are saved to your account</div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <div id="friendModal" class="modal hidden"><form id="friendForm" class="modal-card"><button type="button" class="close" id="closeModal">×</button><div class="brand-mark">＋</div><h2>Add a friend</h2><p class="muted">Enter their exact username to find them.</p><label>Username<input id="friendUsername" required placeholder="e.g. starlight"></label><button class="primary wide">Add friend</button><p id="friendError" class="error"></p></form></div>
+  <div id="themeMenu" class="theme-menu hidden"><b>Choose your color</b><div class="swatches">
+    <button data-theme="blue" title="Blue"></button><button data-theme="purple" title="Purple"></button><button data-theme="pink" title="Pink"></button><button data-theme="green" title="Green"></button><button data-theme="orange" title="Orange"></button><button data-theme="dark" title="Midnight"></button>
+  </div></div>
+</body></html>
